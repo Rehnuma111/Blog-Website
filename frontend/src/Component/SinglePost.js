@@ -4,6 +4,7 @@ import Content from "./Content";
 import { useParams } from "react-router-dom";
 import app_config from "../config";
 import axios from "axios";
+import CateTags from "./CateTags";
 
 const SinglePost = () => {
   const url = app_config.app_url;
@@ -33,90 +34,19 @@ const SinglePost = () => {
       <main id="main">
         <section className="single-post-content">
           <div className="container">
-            <div className="row">
-              <div className="col-md-9 post-content">
+            <div className="row mt-12">
+              <div className="col-md-8 ">
                 {/* ======= Single Post Content ======= */}
                 <Content blogData={blog} />
-                <Comment />
               </div>
               {/* End Single Post Content */}
-              <div className="col-md-3 ">
-                <div className="aside-block">
-                  <h3 className="aside-title">Categories</h3>
-                  <ul className="aside-links list-unstyled">
-                    <li>
-                      <a to="category.html">
-                        <i className="bi bi-chevron-right" /> Business
-                      </a>
-                    </li>
-                    <li>
-                      <a to="category.html">
-                        <i className="bi bi-chevron-right" /> Culture
-                      </a>
-                    </li>
-                    <li>
-                      <a to="category.html">
-                        <i className="bi bi-chevron-right" /> Sport
-                      </a>
-                    </li>
-                    <li>
-                      <a to="category.html">
-                        <i className="bi bi-chevron-right" /> Food
-                      </a>
-                    </li>
-                    <li>
-                      <a to="category.html">
-                        <i className="bi bi-chevron-right" /> Politics
-                      </a>
-                    </li>
-                    <li>
-                      <a to="category.html">
-                        <i className="bi bi-chevron-right" /> Celebrity
-                      </a>
-                    </li>
-                    <li>
-                      <a to="category.html">
-                        <i className="bi bi-chevron-right" /> Startups
-                      </a>
-                    </li>
-                    <li>
-                      <a to="category.html">
-                        <i className="bi bi-chevron-right" /> Travel
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                {/* End Categories */}
-                <div className="aside-block">
-                  <h3 className="aside-title">Tags</h3>
-                  <ul className="aside-tags list-unstyled">
-                    <li>
-                      <a to="category.html">Business</a>
-                    </li>
-                    <li>
-                      <a to="category.html">Culture</a>
-                    </li>
-                    <li>
-                      <a to="category.html">Sport</a>
-                    </li>
-                    <li>
-                      <a to="category.html">Food</a>
-                    </li>
-                    <li>
-                      <a to="category.html">Politics</a>
-                    </li>
-                    <li>
-                      <a to="category.html">Celebrity</a>
-                    </li>
-                    <li>
-                      <a to="category.html">Startups</a>
-                    </li>
-                    <li>
-                      <a to="category.html">Travel</a>
-                    </li>
-                  </ul>
-                </div>
-                {/* End Tags */}
+              <div className="col-md-4">
+                <CateTags />
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-md-8">
+                <Comment  blogData={blog}/>
               </div>
             </div>
           </div>

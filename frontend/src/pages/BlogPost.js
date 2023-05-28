@@ -1,4 +1,4 @@
-import "../styles/blogpost.css"; 
+// import "../styles/blogpost.css"; 
 import React, { useState, useRef } from "react";
 import JoditEditor from "jodit-react";
 import { useFormik } from "formik";
@@ -85,14 +85,14 @@ const BlogPost = () => {
 
   return (
     <>
-      <div className="post_container">
-        <div className="post_card">
-          <p>What is Going in your mind ?</p>
+      <div className="card m-7 p-9">
+        <div className="">
+          <p className="text-3xl font-semibold mb-3">What is Going in your mind ?</p>
           <form className="blog-form" onSubmit={handleSubmit}>
             <div>
               <label className="post-label">Title</label>
               <input
-                className="blog_input"
+                className="border py-2 px-4 w-full mt-2"
                 type="text"
                 placeholder="Enter Title"
                 id="title"
@@ -106,6 +106,7 @@ const BlogPost = () => {
                 ref={editor}
                 tabIndex={5}
                 value={values.content}
+                className="w-full h-full"
                 onChange={(value) => {
                   handleChange({ target: { id: "content", value } });
                 }}
@@ -116,7 +117,7 @@ const BlogPost = () => {
             <div>
               <label className="post-label">Upload Images</label>
               <input
-                className="blog_input"
+                className="border py-2 px-4 w-full mt-2"
                 type="file"
                 accept=".png, .jpg"
                 placeholder="your file"
@@ -133,7 +134,8 @@ const BlogPost = () => {
                 id="tags"
                 value={values.tags}
                 onChange={handleChange}
-                className="blog_input"
+                className="border py-2 px-4 w-full mt-2"
+                
               >
                 <option>Programming</option>
                 <option>ComputerProgramming</option>
@@ -145,7 +147,7 @@ const BlogPost = () => {
               </select>
             </div>
             <div>
-              <button type="submit" className="btn-post">
+              <button type="submit" className="border bg-blue-950 mt-4 px-10 text-white rounded-sm py-2">
                 Submit
               </button>
             </div>

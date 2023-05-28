@@ -1,11 +1,11 @@
 import { useFormik } from "formik";
 import React from "react";
-import styled from "styled-components";
 import { loginSchema } from "../Validation/loginValidation";
 import axios from "axios";
 import app_config from "../config";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Card } from "react-bootstrap";
 const url = app_config.app_url;
 
 const initialValues = {
@@ -56,135 +56,121 @@ const Login = () => {
   // console.log(values);
   // console.log(errors);
   return (
-    <div>
-      <Wrapper>
-        <div className="login-page">
-          <div className="form">
-            <div className="login">
-              <div className="login-header">
-                <h3>LOGIN</h3>
-                <p>Please enter your credentials to login.</p>
+    <React.Fragment>
+      <div className="flex justify-center items-center h-screen ">
+        <Card>
+          <div className="p-4">
+            <div className="form">
+              <div className="login">
+                <div className="text-center">
+                  <h3 className="text-5xl font-bold ">LOGIN</h3>
+                  <p className="text-blue-500">
+                    Please enter your credentials to login.
+                  </p>
+                </div>
               </div>
+              <form autoComplete="off" onSubmit={handleSubmit}>
+                <input
+                  className="border py-2 px-4 w-full mt-2"
+                  type="text"
+                  placeholder="Username"
+                  name="email"
+                  id="email"
+                  value={values.email}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+                {errors.email && touched.email ? (
+                  <p style={{ color: "red" }}>{errors.email}</p>
+                ) : null}
+                {/* Add validation messages here */}
+                <input
+                  className="border py-2 px-4 w-full mt-2"
+                  type="password"
+                  placeholder="Password"
+                  name="password"
+                  id="password"
+                  value={values.password}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+                {errors.password && touched.password ? (
+              <p style={{ color: "red" }}>{errors.password}</p>
+            ) : null}
+                {/* Add validation messages here */}
+                <div className="flex justify-center">
+                  <button className="border bg-blue-950 text-white p-2 mt-2 w-1/2">
+                    Login
+                  </button>
+                </div>
+
+                <p>
+                  Not registered?{" "}
+                  <Link to="/Signup" className="text-blue-400">
+                    Create an account
+                  </Link>
+                </p>
+              </form>
             </div>
-            <form
-              autoComplete="off"
-              onSubmit={handleSubmit}
-              className="login-form"
-            >
-              <input
-                type="text"
-                placeholder="username"
-                name="email"
-                id="email"
-                value={values.email}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              {errors.email && touched.email ? (
-                <p style={{ color: "red" }}>{errors.email}</p>
-              ) : null}
-              <input
-                type="password"
-                placeholder="password"
-                name="password"
-                id="password"
-                value={values.password}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              {errors.password && touched.password ? (
-                <p style={{ color: "red" }}>{errors.password}</p>
-              ) : null}
-              <button>login</button>
-              <p className="message">
-                Not registered? <a href="#">Create an account</a>
-              </p>
-            </form>
           </div>
+        </Card>
+      </div>
+
+      {/* <Card className="flex justify-center items-center h-screen border border-5 m-20 p-5">
+        <div className="form ">
+          <div className="login">
+            <div className="text-center ">
+              <h3 className="text-5xl font-bold">LOGIN</h3>
+              <p className="text-blue-500">
+                Please enter your credentials to login.
+              </p>
+            </div>
+          </div>
+          <form
+            autoComplete="off"
+            onSubmit={handleSubmit}
+            className="login-form"
+          >
+            <input
+              className="border  border-y-8 py-2 px-20  w-full mt-2"
+              type="text"
+              placeholder="username"
+              name="email"
+              id="email"
+              value={values.email}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            {errors.email && touched.email ? (
+              <p style={{ color: "red" }}>{errors.email}</p>
+            ) : null}
+            <input
+              className="border  border-y-8 py-2 px-20 w-full mt-2"
+              type="password"
+              placeholder="password"
+              name="password"
+              id="password"
+              value={values.password}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            {errors.password && touched.password ? (
+              <p style={{ color: "red" }}>{errors.password}</p>
+            ) : null}
+            <div className="flex justify-center">
+              <button className="text-center border border-dotted bg-blue-950 w-1/5 rounded-sm text-white p-2 mt-2">
+                login
+              </button>
+            </div>
+
+            <p className="message">
+              Not registered? <a href="#">Create an account</a>
+            </p>
+          </form>
         </div>
-      </Wrapper>
-    </div>
+      </Card> */}
+    </React.Fragment>
   );
 };
 
 export default Login;
-
-const Wrapper = styled.main`
-@import url(https://fonts.googleapis.com/css?family=Roboto:300);
-header .header{
-  background-color: #fff;
-  height: 45px;
-}
-header a img{
-  width: 134px;
-margin-top: 4px;
-}
-.login-page {
-  width: 360px;
-  padding: 8% 0 0;
-  margin: auto;
-}
-.login-page .form .login{
-  margin-top: -31px;
-margin-bottom: 26px;
-}
-.form {
-  position: relative;
-  z-index: 1;
-  background: #FFFFFF;
-  max-width: 360px;
-  margin: 0 auto 100px;
-  padding: 45px;
-  text-align: center;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-}
-.form input {
-  font-family: "Roboto", sans-serif;
-  outline: 0;
-  background: #f2f2f2;
-  width: 100%;
-  border: 0;
-  margin: 0 0 15px;
-  padding: 15px;
-  box-sizing: border-box;
-  font-size: 14px;
-}
-.form button {
-  font-family: "Roboto", sans-serif;
-  text-transform: uppercase;
-  outline: 0;
-  background-color: #328f8a;
-  background-image: linear-gradient(45deg,#328f8a,#08ac4b);
-  width: 100%;
-  border: 0;
-  padding: 15px;
-  color: #FFFFFF;
-  font-size: 14px;
-  -webkit-transition: all 0.3 ease;
-  transition: all 0.3 ease;
-  cursor: pointer;
-}
-.form .message {
-  margin: 15px 0 0;
-  color: #b3b3b3;
-  font-size: 12px;
-}
-.form .message a {
-  color: #4CAF50;
-  text-decoration: none;
-}
-.container {
-  position: relative;
-  z-index: 1;
-  max-width: 300px;
-  margin: 0 auto;
-}
-
-body {
-  background-color: #328f8a;
-  background-image: linear-gradient(45deg,#328f8a,#08ac4b);
-  font-family: "Roboto", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
- `;
